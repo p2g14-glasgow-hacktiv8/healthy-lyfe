@@ -1,4 +1,6 @@
 'use strict';
+const { hashPassword } = require('../helpers/bcryptjs')
+
 const {
   Model
 } = require('sequelize');
@@ -11,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      User.hasMany(models.Todo, {
+      User.hasMany(models.Recipe, {
         foreignKey: "UserId"
       })
     }
@@ -40,6 +42,11 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'User',
+    hooks: {
+      beforeCreate: (user, options) => {
+        user.password = hashPassword(user.password)
+      }
+    }
   });
   return User;
 };

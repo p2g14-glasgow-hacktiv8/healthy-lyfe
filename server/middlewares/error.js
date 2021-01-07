@@ -16,7 +16,7 @@ function error(err, req, res, next) {
         } else if(err.name === "Not Authorized") {
             res.status(403).json({message: "No Authorization"})
         } else {
-            console.log('internal Server Error')
+            console.log(err)
             res.status(500).json({message: "internal Server Error"})
         }
     }

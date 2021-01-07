@@ -29,6 +29,7 @@ class UserController {
                     }
                     const access_token = generateToken(payload)
                     // console.log(access_token)
+                    req.headers.access_token = access_token
                     res.status(200).json({
                         access_token
                     })

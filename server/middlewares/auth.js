@@ -1,5 +1,5 @@
 const { checkToken } = require('../helpers/jwt')
-const {  User } = require('../models')
+const {  User, Recipe } = require('../models')
 
 async function authentication(req, res, next) {
     try {
@@ -11,30 +11,33 @@ async function authentication(req, res, next) {
             req.user = find
             next()
         }
-    }
-    catch (err) {
+    } catch (err) {
         next(err)
     }
 }
 
 function authorization(req, res, next) {
+    try {
+        let verifiedToken = checkToken(req.headers.access_token)
+        let userId = verifiedToken.id
 
-    Todo.findOne({where: {
-        id: req.params.id
-    }})
+        Recipe.findOne({where: {
+            id: req.params.recipeId
+        }})
         .then(data => {
-            console.log(data)
             if(!data) {
-                next({name: "Not Authorized"})
+                next({name: "notFound"})
             } else {
-                next()
+                if (data.UserId == userId) {
+                    next()
+                } else {
+                    next({name: "Not Authorized"})
+                }
             }
         })
-        .catch(err => {
-            next(err)
-        })
-    
-
+    } catch (err) {
+        next(err)
+    }
 }
 
 module.exports = {
