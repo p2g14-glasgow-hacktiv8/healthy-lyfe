@@ -1,5 +1,6 @@
 const { Recipe } = require('../models')
 const { checkToken } = require('../helpers/jwt')
+const { default: axios } = require('axios')
 
 
 class RecipeController {
@@ -71,6 +72,26 @@ class RecipeController {
         .catch(err => {
             next(err)
         })
+    }
+
+    static searchRecipes(req, res, next) {
+        const baseUrl = "https://api.spoonacular.com/recipes/complexSearch";
+        const option = {
+            params: {
+                apiKey: process.env.API_KEY,
+                query: req.body.recipe,
+                addRecipeInformation: true,
+                number: 10
+            }
+        }
+
+        axios.get(baseUrl, option)
+            .then(response => {
+                res.status(200).json(response.data)
+            })
+            .catch(err => {
+                next(err)
+            })
     }
     
 }
