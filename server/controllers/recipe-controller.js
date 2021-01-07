@@ -87,7 +87,43 @@ class RecipeController {
 
         axios.get(baseUrl, option)
             .then(response => {
-                res.status(200).json(response.data)
+
+                const recipes = response.data.results.map(recipe => {
+                    return {
+                        title: recipe.title,
+                        sourceUrl: recipe.sourceUrl,
+                        image: recipe.image
+                    }
+                })
+
+                res.status(200).json(recipes)
+            })
+            .catch(err => {
+                next(err)
+            })
+    }
+
+    static randomRecipes(req, res, next) {
+        const baseUrl = "https://api.spoonacular.com/recipes/random";
+        const option = {
+            params: {
+                apiKey: process.env.API_KEY,
+                number: 5
+            }
+        }
+
+        axios.get(baseUrl, option)
+            .then(response => {
+
+                const recipes = response.data.recipes.map(recipe => {
+                    return {
+                        title: recipe.title,
+                        sourceUrl: recipe.sourceUrl,
+                        image: recipe.image
+                    }
+                })
+
+                res.status(200).json(recipes)
             })
             .catch(err => {
                 next(err)
