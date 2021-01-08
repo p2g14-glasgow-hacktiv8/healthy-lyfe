@@ -130,12 +130,13 @@ $("#signup").click(function() {
     
 });
 
+
+// SEARCH BUTTON
 $('#search-btn').click(event => {
     event.preventDefault();
 
     let recipe = $('#recipe').val()
-    console.log(recipe);
-
+    // console.log(recipe);
     $.ajax({
         method: "POST",
         url: `${baseURL}/recipes/search`,
@@ -147,9 +148,36 @@ $('#search-btn').click(event => {
         }
     })
         .done(listRecipes => {
-            getRecommendedRecipes()
+            getRecommendedRecipes();
+            $('#list-recipe').empty();
+            let template = '';
+
+            for (let i = 0; i < 1; i++) {
+                let card = ''
+                template += '<div class="row mb-2">'
+
+                for (let j = 0; j < 3; j++) {
+                    card += `
+                <div class="col-md-4">
+                    <div class="card">
+                        <img id="img-recipe-${i * 3 + j}" class="card-img-top" src="${listRecipes[i * 3 + j].image}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 id="name-recipe-${i * 3 + j}" class="name-recipe-${i * 3 + j} card-title">${listRecipes[i * 3 + j].title}</h5>
+                            <a id="link-recipe-${i * 3 + j}" class="btn btn-outline-danger" href="${listRecipes[i * 3 + j].sourceUrl}" id="recipe-button" target="_blank">Recipe</a>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-outline-danger" type="submit" id="bookmark-button" onclick="addRecipe(${i * 3 + j})">Bookmark</button>
+                        </div>
+                    </div>
+                </div>\n`
+                }
+
+                template += card + '</div>\n'
+            }
+            $('#list-recipe').append(template)
         })
         .fail(xhr => {
+            // console.log(xhr);
             $('#error-found-recipes').fadeIn(500)
             let errorFoundRecipes = setInterval(() => {
                 $('#error-found-recipes').fadeOut(500);
@@ -158,6 +186,7 @@ $('#search-btn').click(event => {
         })
 })
 
+// RANDOM FUNCTION
 function getRecommendedRecipes() {
     $.ajax({
         method: "GET",
@@ -167,9 +196,58 @@ function getRecommendedRecipes() {
         },
     })
         .done(recipes => {
-            console.log(recipes);
+            $('#recommended-recipes').empty();
+            let template = '<div class="row mb-2">'
+
+            for (let j = 0; j < 3; j++) {
+                card += `
+                <div class="col-md-4">
+                    <div class="card">
+                        <img id="img-recipe-${j}" class="card-img-top" src="${listRecipes[j].image}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 id="name-recipe-${j}" class="name-recipe-${j} card-title">${listRecipes[j].title}</h5>
+                            <a id="link-recipe-${j}" class="btn btn-outline-danger" href="${listRecipes[j].sourceUrl}" id="recipe-button" target="_blank">Recipe</a>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-outline-danger" type="submit" id="bookmark-button" onclick="addRecipe(${j})">Bookmark</button>
+                        </div>
+                    </div>
+                </div>\n`
+            }
+            template += card + '</div>\n'
+
+            $('#recommended-recipes').append(template)
+            
         })
         .fail(xhr => {
             console.log(xhr);
         })
+}
+
+// Add recipe function
+function addRecipe(id) {
+    let foodName = $(`.name-recipe-${id}`).text()
+    let recipe = $(`#link-recipe-${id}`).attr('href') 
+    let url = $(`#img-recipe-${id}`).attr('src')
+
+    // console.log(foodName, recipe, url);
+    $.ajax({
+        method: 'POST',
+        url: `${baseURL}/recipes`,
+        headers: {
+            access_token: localStorage.access_token,
+        },
+        data: {
+            foodName,
+            recipe,
+            url,
+        }
+    })
+    .done(response => {
+        $('#list-recipe').empty()
+        $('#list-recipe').hide()
+    })
+    .fail(xhr => {
+        console.log(xhr);
+    })
 }
