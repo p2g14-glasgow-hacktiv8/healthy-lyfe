@@ -114,6 +114,7 @@ function onSignIn(googleUser) {
     .fail (err => {
         console.log(err)
     })
+}
 
 
 $("#signup").click(function() {
@@ -217,6 +218,7 @@ function getRecommendedRecipes() {
             template += card + '</div>\n'
 
             $('#recommended-recipes').append(template)
+        
             
         })
         .fail(xhr => {

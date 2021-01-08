@@ -20,7 +20,7 @@ class RecipeController {
         })
     }
 
-    static deleteTodoHandler(req, res, next) {
+    static deleteRecipeHandler(req, res, next) {
         let { recipeId } = req.params
 
         Recipe.findByPk(recipeId)

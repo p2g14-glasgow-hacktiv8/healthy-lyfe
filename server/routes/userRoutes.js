@@ -4,6 +4,7 @@ const UserController = require('../controllers/user-controller')
 
 router.post('/register', UserController.postRegisterHandler)
 router.post('/login', UserController.postLoginHandler)
+router.post('/loginGoogle', UserController.loginGoogle)
 router.post('/bmi', UserController.postBMI)
 //router.get('/tes', UserController.userHandler)
 
