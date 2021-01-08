@@ -1,4 +1,4 @@
-const baseURL = "http://localhost/3000"
+const baseURL = "http://localhost:3000"
 
 $(document).ready (function() {
     checkAuth()
@@ -31,8 +31,8 @@ $(document).ready (function() {
     $("login-button").click(function (event) {
         event.preventDefault()
 
-        const email = $ ("#email-login").val()
-        const password = $ ("#password-login").val()
+        const email = $("#email-login").val()
+        const password = $("#password-login").val()
 
         $.ajax ({
             method: "POST",
@@ -115,20 +115,5 @@ function onSignIn(googleUser) {
         console.log(err)
     })
 
+    
 }
-  
-
-$("#signup").click(function() {
-    $("#first").fadeOut("fast", function() {
-    $("#second").fadeIn("fast");
-    });
-    
-    $("#signin").click(function() {
-    $("#second").fadeOut("fast", function() {
-    $("#first").fadeIn("fast");
-    });
-    });    
-    
-});
-    
-// $('.container').hide()
