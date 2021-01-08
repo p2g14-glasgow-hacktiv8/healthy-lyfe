@@ -84,6 +84,86 @@ Content:
 }
 ```
 
+ ## - POST/loginGoogle
+
+### *Request Header*
+
+```Not Needed```
+
+### *Request Body*
+
+```javascript
+{
+    "id_token": "<your id_token>"
+}
+```
+
+### *Success Response*
+```javascript
+Code: 200 OK
+Content:
+{
+    "access_token": "<your access_token>"
+}
+```
+OR
+
+```javascript
+Code: 201 Created
+Content:
+{
+    "access_token": "<your access_token>"
+}
+```
+
+### *Error Response*
+
+```javascript
+Code: 401 Unauthorized
+Content:
+{
+    "message":  "<Invalid Email/Password>" ,
+    
+}
+```
+## - POST/postBMI
+
+### *Request Header*
+
+```Not Needed```
+
+### *Request Body*
+
+```javascript
+{
+    "height": "<your height>",
+    "weight": "<your weight>"
+}
+```
+
+### *Success Response*
+```javascript
+Code: 201 Created
+Content:
+{
+    "value": "<your value>",
+    "conclusion": "<your conclusion>",
+    "unit": "<your unit>"
+}
+```
+
+### *Error Response*
+
+```javascript
+Code: 500 Internal Server Error
+Content:
+{
+    "message":  "<Internal Server Error>" ,
+    
+}
+```
+
+
  ## - POST/recipes
 
 ### *Request Header*
@@ -352,3 +432,4 @@ Content:
     
 }
 ```
+

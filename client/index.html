@@ -10,7 +10,6 @@
   <link rel="stylesheet" href="style.css">
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  
   <title>Document</title>
 </head>
 
@@ -18,10 +17,11 @@
 <body>
 
   <!-- Login Session -->
-  <div class="container">
+
+  <div class="container container-box">
     <div class="row">
       <div class="col-md-5 mx-auto">
-        <div id="first">
+        <div id="login">
           <div class="myform form ">
             <div class="logo mb-3">
               <div class="col-md-12 text-center">
@@ -30,17 +30,17 @@
             </div>
             <form action="" method="post" name="login">
               <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp"
+                <label for="email-login">Email address</label>
+                <input type="email" name="email" class="form-control" id="email-login" aria-describedby="emailHelp"
                   placeholder="Enter email">
               </div>
               <div class="form-group">
-                <label for="exampleInputEmail1">Password</label>
-                <input type="password" name="password" id="password" class="form-control" aria-describedby="emailHelp"
+                <label for="password-login">Password</label>
+                <input type="password" name="password" id="password-login" class="form-control" aria-describedby="emailHelp"
                   placeholder="Enter Password">
               </div>
               <div class="col-md-12 text-center ">
-                <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Login</button>
+                <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm" id="login-button">Login</button>
               </div>
               <div class="col-md-12 ">
                 <div class="login-or">
@@ -50,22 +50,22 @@
               </div>
               <div class="col-md-12 mb-3">
                 <p class="text-center">
-                  <a href="/" id="go-register" class="google btn mybtn"><i class="fa fa-google-plus">
+                  <a href="#" class="google btn mybtn"><i class="fa fa-google-plus">
                     </i> Signup using Google
                   </a>
                 </p>
               </div>
               <div class="form-group">
-                <p class="text-center">Don't have account? <a href="#" id="signup">Sign up here</a></p>
+                <p class="text-center">Don't have account? <a href="#" id="go-register">Sign up here</a></p>
               </div>
-              
+
             </form>
 
           </div>
         </div>
 
         <!-- Register Session -->
-        <div id="second">
+        <div id="register">
           <div class="myform form ">
             <div class="logo mb-3">
               <div class="col-md-12 text-center">
@@ -75,25 +75,26 @@
             <form action="#" name="registration">
               <div class="form-group">
                 <label for="exampleInputEmail1">Name</label>
-                <input type="text" name="name" class="form-control" id="name" aria-describedby="emailHelp"
+                <input type="text" name="name" class="form-control" id="username-register" aria-describedby="emailHelp"
                   placeholder="Enter name">
               </div>
               <div class="form-group">
                 <label for="exampleInputEmail1">Email address</label>
-                <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp"
+                <input type="email" name="email" class="form-control" id="email-register" aria-describedby="emailHelp"
                   placeholder="Enter email">
               </div>
               <div class="form-group">
                 <label for="exampleInputEmail1">Password</label>
-                <input type="password" name="password" id="password" class="form-control" aria-describedby="emailHelp"
+                <input type="password" name="password" id="password-register" class="form-control" aria-describedby="emailHelp"
                   placeholder="Enter Password">
               </div>
               <div class="col-md-12 text-center mb-3">
-                <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Get Started For Free</button>
+                <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm" id="register-button">Get Started
+                  For Free</button>
               </div>
               <div class="col-md-12 ">
                 <div class="form-group">
-                  <p class="text-center"><a href="#" id="signin">Already have an account?</a></p>
+                  <p class="text-center"><a href="#" id="back-to-login">Already have an account?</a></p>
                 </div>
               </div>
           </div>
@@ -105,84 +106,127 @@
 
   <!-- Navbar & Sign Out -->
 
-
   <nav class="navbar navbar-light bg-light justify-content-between" style="background-color: #51a7e4;">
     <a class="navbar-brand">Welcome, Name</a>
-    
+    <button class="btn btn-outline-info" type="submit" id="user-bookmark">See Bookmark Recipe</button>
     <form class="form-inline">
       <button class="btn btn-outline-danger" type="submit" id="logout-button">Sign Out</button>
     </form>
   </nav>
 
-  <!-- Search Bar -->
-  <div class="row">
-    <div class="col-md-6">
+<!-- Search Bar -->
 
+  <div class="container bg-light">
+    <div class="row align-middle">
+      <input class="form-control mr-sm-8 col-md-4" type="search" placeholder="Search your recipe" aria-label="Search">
+      <button class="btn btn-primary tx-tfm" type="submit" id="search-button">Search</button>
     </div>
-    <input class="form-control mr-sm-8 col-md-2" type="search" placeholder="Search" aria-label="Search">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="row">
+          <h1>BMI CALCULATOR</h1>
+        </div>
+        <div class="row">
+          <h1>RANDOM QUOTES</h1>
+        </div>
+      </div>
+
+      <div class="col-md-9">
+        <div class="row">
+
+
+          <!-- Searching Results -->
+
+
+          <div class="card-deck" id="search-results">
+            <div class="card">
+              <img class="card-img-top"
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/RedDot_Burger.jpg/1200px-RedDot_Burger.jpg"
+                alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Nama Makanan</h5>
+                <button class="btn btn-outline-danger" type="submit" id="recipe-button">Recipe</button>
+              </div>
+              <div class="card-footer">
+                <button class="btn btn-outline-danger" type="submit" id="bookmark-button">Bookmark</button>
+              </div>
+            </div>
+            <div class="card">
+              <img class="card-img-top"
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/RedDot_Burger.jpg/1200px-RedDot_Burger.jpg"
+                alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Nama Makanan</h5>
+                <button class="btn btn-outline-danger" type="submit" id="recipe-button">Recipe</button>
+              </div>
+              <div class="card-footer">
+                <button class="btn btn-outline-danger" type="submit" id="bookmark-button">Bookmark</button>
+              </div>
+            </div>
+            <div class="card">
+              <img class="card-img-top"
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/RedDot_Burger.jpg/1200px-RedDot_Burger.jpg"
+                alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Nama Makanan</h5>
+                <button class="btn btn-outline-danger" type="submit" id="recipe-button">Recipe</button>
+              </div>
+              <div class="card-footer">
+                <button class="btn btn-outline-danger" type="submit" id="bookmark-button">Bookmark</button>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- User Data -->
+
+
+          <div class="card-deck" id="user-results">
+            <div class="card">
+              <img class="card-img-top"
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/RedDot_Burger.jpg/1200px-RedDot_Burger.jpg"
+                alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Nama Makanan</h5>
+                <button class="btn btn-outline-danger" type="submit" id="recipe-button">Recipe</button>
+              </div>
+              <div class="card-footer">
+                <button class="btn btn-outline-danger" type="submit" id="delete-button">Delete</button>
+              </div>
+            </div>
+            <div class="card">
+              <img class="card-img-top"
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/RedDot_Burger.jpg/1200px-RedDot_Burger.jpg"
+                alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Nama Makanan</h5>
+                <button class="btn btn-outline-danger" type="submit" id="recipe-button">Recipe</button>
+              </div>
+              <div class="card-footer">
+                <button class="btn btn-outline-danger" type="submit" id="delete-button">Delete</button>
+              </div>
+            </div>
+            <div class="card">
+              <img class="card-img-top"
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/RedDot_Burger.jpg/1200px-RedDot_Burger.jpg"
+                alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Nama Makanan</h5>
+                <button class="btn btn-outline-danger" type="submit" id="recipe-button">Recipe</button>
+              </div>
+              <div class="card-footer">
+                <button class="btn btn-outline-danger" type="submit" id="delete-button">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <!-- Main -->
-  <!-- src="" diisi sama data image url yang udah diambil-->
-  <div class="card-deck">
-    <div class="card">
-      <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/RedDot_Burger.jpg/1200px-RedDot_Burger.jpg" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">Nama Makanan</h5>
-        <button class="btn btn-outline-danger" type="submit" id="recipe-button">Recipe</button>
-        <!-- Dibawah ini optional -->
-        <!-- <p class="card-text">Cuisine: {dari database spoonacular.cuisine[0]}</p>
-        <p class="card-text">Seving Time: {dari database spoonacular.readyinMinutes}</p>
-        <p class="card-text">Health Score: {dari database spoonacular.healthScore}</p> -->
-      </div>
-      <div class="card-footer">
-        <button class="btn btn-outline-danger" type="submit" id="bookmark-button">Bookmark</button>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/RedDot_Burger.jpg/1200px-RedDot_Burger.jpg" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">Nama Makanan</h5>
-        <button class="btn btn-outline-danger" type="submit" id="recipe-button">Recipe</button>
-        <!-- Dibawah ini optional -->
-        <!-- <p class="card-text">Cuisine: {dari database spoonacular.cuisine[0]}</p>
-        <p class="card-text">Seving Time: {dari database spoonacular.readyinMinutes}</p>
-        <p class="card-text">Health Score: {dari database spoonacular.healthScore}</p> -->
-      </div>
-      <div class="card-footer">
-        <button class="btn btn-outline-danger" type="submit" id="bookmark-button">Bookmark</button>
-      </div>
-    </div><div class="card">
-      <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/RedDot_Burger.jpg/1200px-RedDot_Burger.jpg" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">Nama Makanan</h5>
-        <button class="btn btn-outline-danger" type="submit" id="recipe-button">Recipe</button>
-        <!-- Dibawah ini optional -->
-        <!-- <p class="card-text">Cuisine: {dari database spoonacular.cuisine[0]}</p>
-        <p class="card-text">Seving Time: {dari database spoonacular.readyinMinutes}</p>
-        <p class="card-text">Health Score: {dari database spoonacular.healthScore}</p> -->
-      </div>
-      <div class="card-footer">
-        <button class="btn btn-outline-danger" type="submit" id="bookmark-button">Bookmark</button>
-      </div>
-    </div><div class="card">
-      <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/RedDot_Burger.jpg/1200px-RedDot_Burger.jpg" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">Nama Makanan</h5>
-        <button class="btn btn-outline-danger" type="submit" id="recipe-button">Recipe</button>
-        <!-- Dibawah ini optional -->
-        <!-- <p class="card-text">Cuisine: {dari database spoonacular.cuisine[0]}</p>
-        <p class="card-text">Seving Time: {dari database spoonacular.readyinMinutes}</p>
-        <p class="card-text">Health Score: {dari database spoonacular.healthScore}</p> -->
-      </div>
-      <div class="card-footer">
-        <button class="btn btn-outline-danger" type="submit" id="bookmark-button">Bookmark</button>
-      </div>
-    </div>
-  </div>
 
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
   <script src="https://apis.google.com/js/platform.js" async defer></script>
   <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
