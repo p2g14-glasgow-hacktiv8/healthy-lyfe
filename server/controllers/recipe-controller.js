@@ -81,12 +81,15 @@ class RecipeController {
                 apiKey: process.env.API_KEY,
                 query: req.body.recipe,
                 addRecipeInformation: true,
-                number: 10
+                number: 9
             }
         }
 
         axios.get(baseUrl, option)
             .then(response => {
+                if (!response.data.results.length) {
+                    throw new Error ('Food not found')
+                }
 
                 const recipes = response.data.results.map(recipe => {
                     return {
@@ -108,7 +111,7 @@ class RecipeController {
         const option = {
             params: {
                 apiKey: process.env.API_KEY,
-                number: 5
+                number: 3
             }
         }
 
