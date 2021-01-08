@@ -26,6 +26,9 @@ $(document).ready (function() {
         $("#logout-button").hide()
         $("#apps").hide()
         $("#register").show()
+        $("#search-results").hide()
+        $("#search-bar").hide()
+        $("#navbar").hide()
     })
 
     $("login-button").click(function (event) {
@@ -83,12 +86,17 @@ function checkAuth() {
         $("#login").hide()
         $("#register").hide()
         $("#logout-button").hide()
-        $("#apps").show()
+        $("#search-results").show()
+        $("#search-bar").show()
+        $("#navbar").show()
     } else {
         $("#login").show()
         $("#register").hide()
         $("#logout-button").hide()
         $("#apps").hide()
+        $("#search-results").hide()
+        $("#search-bar").hide()
+        $("#navbar").hide()
     }
 }
 
