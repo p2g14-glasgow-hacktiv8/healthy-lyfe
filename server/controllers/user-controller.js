@@ -2,14 +2,15 @@ const { OAuth2Client } = require('google-auth-library')
 const { User } = require('../models')
 const { comparePassword } = require('../helpers/bcryptjs')
 const { generateToken } = require('../helpers/jwt')
+const axios = require('axios').default;
 
 class UserController {
     static postRegisterHandler(req, res, next) {
-        const { name, email, password } = req.body
-
-        User.create(req.body)
+        let { name, email, password } = req.body
+        User.create({name, email, password})
             .then(data => {
-                res.status(201).json(data)
+                let { id, email } = data
+                res.status(201).json({ id, email })
             })
             .catch(err => {
                 next(err)
@@ -29,7 +30,6 @@ class UserController {
                         email: data.email
                     }
                     const access_token = generateToken(payload)
-                    // console.log(access_token)
                     req.headers.access_token = access_token
                     res.status(200).json({
                         access_token
@@ -98,6 +98,30 @@ class UserController {
             next (err)
         })
 
+    }
+
+    static postBMI (req, res, next) {
+        const { height, weight } = req.body
+        const baseUrl = 'https://fitness-api.p.rapidapi.com/fitness'
+        const data = {
+            height: height,
+            weight: weight,
+            age: age,
+            gender: gender,
+          }
+
+        var options = {
+            headers: {
+                'x-rapidapi-key': process.env.FITNESS_API_KEY,
+                'x-rapidapi-host': 'fitness-api.p.rapidapi.com'
+            },
+        };
+          
+        axios.post(baseUrl, data, options).then(function (response) {
+            res.status(200).json(response.data.bodyMassIndex)
+        }).catch(function (error) {
+            next(err)
+        });
     }
 }
 
