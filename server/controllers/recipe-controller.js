@@ -76,6 +76,9 @@ class RecipeController {
     
     static searchRecipes(req, res, next) {
         const baseUrl = "https://api.spoonacular.com/recipes/complexSearch";
+        console.log(req.body.recipe);
+
+        // console.log(object);
         const option = {
             params: {
                 apiKey: process.env.API_KEY,
@@ -87,6 +90,9 @@ class RecipeController {
 
         axios.get(baseUrl, option)
             .then(response => {
+                if (!response.data.length) {
+                    throw new Error ('Food not found')
+                }
 
                 const recipes = response.data.results.map(recipe => {
                     return {
