@@ -73,6 +73,62 @@ class RecipeController {
         })
     }
     
+    static searchRecipes(req, res, next) {
+        const baseUrl = "https://api.spoonacular.com/recipes/complexSearch";
+        const option = {
+            params: {
+                apiKey: process.env.API_KEY,
+                query: req.body.recipe,
+                addRecipeInformation: true,
+                number: 10
+            }
+        }
+
+        axios.get(baseUrl, option)
+            .then(response => {
+
+                const recipes = response.data.results.map(recipe => {
+                    return {
+                        title: recipe.title,
+                        sourceUrl: recipe.sourceUrl,
+                        image: recipe.image
+                    }
+                })
+
+                res.status(200).json(recipes)
+            })
+            .catch(err => {
+                next(err)
+            })
+    }
+
+    static randomRecipes(req, res, next) {
+        const baseUrl = "https://api.spoonacular.com/recipes/random";
+        const option = {
+            params: {
+                apiKey: process.env.API_KEY,
+                number: 5
+            }
+        }
+
+        axios.get(baseUrl, option)
+            .then(response => {
+
+                const recipes = response.data.recipes.map(recipe => {
+                    return {
+                        title: recipe.title,
+                        sourceUrl: recipe.sourceUrl,
+                        image: recipe.image
+                    }
+                })
+
+                res.status(200).json(recipes)
+            })
+            .catch(err => {
+                next(err)
+            })
+    }
+    
 }
 
 module.exports = RecipeController
