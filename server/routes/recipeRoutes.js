@@ -8,7 +8,7 @@ router.get('/', RecipeController.getRecipes)
 router.get('/search', RecipeController.searchRecipes)
 router.get('/random', RecipeController.randomRecipes)
 router.get('/:recipeId', authorization, RecipeController.getOneRecipe)
-router.delete('/:recipeId', authorization, RecipeController.deleteTodoHandler)
+router.delete('/:recipeId', authorization, RecipeController.deleteRecipeHandler)
 
 
 module.exports = router

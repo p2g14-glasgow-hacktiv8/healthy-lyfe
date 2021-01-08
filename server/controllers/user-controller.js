@@ -7,9 +7,9 @@ class UserController {
     static postRegisterHandler(req, res, next) {
         const { name, email, password } = req.body
 
-        User.create(req.body)
+        User.create({ name, email, password })
             .then(data => {
-                res.status(201).json(data)
+                res.status(201).json({ id: data.id, name: data.name, email: data.email })
             })
             .catch(err => {
                 next(err)
@@ -95,7 +95,7 @@ class UserController {
         })
         .catch (err => {
             console.log(err)
-            next (err)
+            next ({ name: "invalid "})
         })
 
     }
