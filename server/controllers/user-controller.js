@@ -50,11 +50,13 @@ class UserController {
 
         let email = ""
 
+        console.log(process.env.GOOGLE_CLIENT_ID)
         client.verifyIdToken({
             idToken: id_token,
             audience: process.env.GOOGLE_CLIENT_ID
         })
         .then (ticket => {
+            console.log(ticket)
             const payload = ticket.getPayload()
 
             email = payload.email

@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="google-signin-client_id" content="53714850935-9hnl56fen14l86niahjtbm9mdsenelqq.apps.googleusercontent.com">
+  <meta name="google-signin-client_id" content="243362004367-18pq1rbfk4h6drqvjepvkjqanc1p397m.apps.googleusercontent.com">
   
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <link rel="stylesheet" href="style.css">
@@ -18,10 +18,10 @@
 
   <!-- Login Session -->
 
-  <div class="container container-box">
-    <div class="row">
-      <div class="col-md-5 mx-auto">
-        <div id="login">
+  <div id="login">
+    <div class="container container-box">
+      <div class="row">
+        <div class="col-md-5 mx-auto">
           <div class="myform form ">
             <div class="logo mb-3">
               <div class="col-md-12 text-center">
@@ -50,8 +50,8 @@
               </div>
               <div class="col-md-12 mb-3">
                 <p class="text-center">
-                  <a href="#" class="google btn mybtn"><i class="fa fa-google-plus">
-                    </i> Signup using Google
+                  <a href="#" class="google btn mybtn g-signin2" data-onsuccess="onSignIn"><i class="fa fa-google-plus">
+                    </i> Signup using Google <div class="" ></div>
                   </a>
                 </p>
               </div>
@@ -105,22 +105,25 @@
   </div>
 
   <!-- Navbar & Sign Out -->
-
-  <nav class="navbar navbar-light bg-light justify-content-between" style="background-color: #51a7e4;">
-    <a class="navbar-brand">Welcome, Name</a>
-    <button class="btn btn-outline-info" type="submit" id="user-bookmark">See Bookmark Recipe</button>
-    <form class="form-inline">
-      <button class="btn btn-outline-danger" type="submit" id="logout-button">Sign Out</button>
-    </form>
-  </nav>
+  
+    <nav class="navbar navbar-light bg-light justify-content-between" id="navbar" style="background-color: #51a7e4;">
+      <a class="navbar-brand">Welcome, Name</a>
+      <button class="btn btn-outline-info" type="submit" id="user-bookmark">See Bookmark Recipe</button>
+      <form class="form-inline">
+        <button class="btn btn-outline-danger" type="submit" id="logout-button">Sign Out</button>
+      </form>
+    </nav>
+  
 
 <!-- Search Bar -->
 
-  <div class="container bg-light">
+  <div class="container bg-light" id="search-bar">
+    <form>
     <div class="row align-middle">
-      <input class="form-control mr-sm-8 col-md-4" type="search" placeholder="Search your recipe" aria-label="Search">
-      <button class="btn btn-primary tx-tfm" type="submit" id="search-button">Search</button>
-    </div>
+        <input class="form-control mr-sm-8 col-md-4" type="search" placeholder="Search your recipe" aria-label="Search">
+        <button class="btn btn-primary tx-tfm" type="submit" id="search-btn">Search</button>
+      </div>
+    </form>
     <div class="row">
       <div class="col-md-3">
         <div class="row">
