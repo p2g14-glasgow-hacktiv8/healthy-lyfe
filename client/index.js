@@ -130,6 +130,7 @@ $("#signup").click(function() {
     
 });
 
+// $('.container').hide()
 
 // SEARCH BUTTON
 $('#search-btn').click(event => {
